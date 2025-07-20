@@ -268,12 +268,15 @@ func DeletePostHandler(db *DB) func(*gin.Context) {
 	}
 }
 
+func NewDB() *DB {
+}
+
 func main() {
 	e := gin.Default()
 
-	var db DB
+	db := NewDB()
 
-	e.POST("/posts", NewPostHandler(&db))
+	e.POST("/posts", NewPostHandler(db))
 	e.GET("/posts/:id", GetPostHandler(&db))
 	e.GET("/posts", ListPostHanlder(&db))
 	e.PATCH("/posts/:id", UpdatePostHanlder(&db))

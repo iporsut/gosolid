@@ -74,6 +74,6 @@ func main() {
 		c.Next()
 	}
 
-	r.PUT("/posts/:id", postHandler.UpdateHandler)
+	r.PUT("/posts/:id", logReqMiddleware, postHandler.UpdateHandler)
 	r.Run(":8080") // Start the server
 }
