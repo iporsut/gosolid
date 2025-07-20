@@ -98,7 +98,9 @@ type UpdatePostResp struct {
 	Body  string `json:"body"`
 }
 
-func NewPostHandler(db *DB) func(*gin.Context) {
+func NewPostHandler(db interface {
+	AddPost(ctx context.Context, newPost Post) (Post, error)
+}) func(*gin.Context) {
 	return func(c *gin.Context) {
 		var newPostReq NewPostReq
 
